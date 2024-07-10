@@ -1,19 +1,19 @@
-# 🎈 Blank app template
+# Heart Disease Capstone
 
-A simple Streamlit app template for you to modify!
+Repositori ini berisi kode dan dokumentasi untuk project capstone "Prediksi Penyakit Jantung".
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Overview
 
-### How to run it on your own machine
+Tujuan dari project ini adalah untuk mengembangkan model yang dapat secara akurat memprediksi penyakit jantung pada pasien berdasarkan berbagai atribut medis.
 
-1. Install the requirements
+## Dataset
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+Dataset yang digunakan untuk proyek ini adalah kumpulan data [Heart+Disease](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
 
-2. Run the app
+## Installation
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+Untuk menjalankan kode di repositori ini, ikuti langkah-langkah berikut:
+
+1. Kloning repositori: `git clone https://github.com/maoelanaAs/heart-disease-capstone.git`
+2. Instal dependensi yang diperlukan: `pip install -r requirements.txt`
+3. Jalankan aplikasinya: `streamlit streamlit_app.py`
