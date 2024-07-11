@@ -30,10 +30,6 @@ model = pickle.load(open('models/rfc_normalization.pkl', 'rb'))
 y_pred = model.predict(X_test_normalized)
 akurasi = round(accuracy_score(y_test_normalized, y_pred)*100, 1)
 
-# Dataframe
-df_final = X
-df_final['target'] = y
-
 st.set_page_config("Prediksi Penyakit Jantung", ":heart:")
 
 st.title("Prediksi Penyakit Jantung")
@@ -88,7 +84,7 @@ chol = st.sidebar.number_input(
 )
 
 sb_fbs = st.sidebar.selectbox(
-    label="Gula Darah Puasa, Apakah lebih dari 120 mg/dl? (fbs)",
+    label="Apakah Gula Darah Puasa lebih dari 120 mg/dl? (fbs)",
     options=["Ya", "Tidak"]
 )
 
@@ -125,11 +121,11 @@ if sb_exang == "Ya":
 elif sb_exang == "Tidak":
     exang = 0
 
-oldpeak = st.sidebar.number_input(
+oldpeak = round(st.sidebar.number_input(
     label="Depresi ST Induksi Olahraga (oldpeak)",
     min_value=0.0,
     max_value=10.0
-)
+), 2)
 
 st.divider()
 st.subheader("Hasil Masukkan Data")
@@ -144,19 +140,16 @@ predict_btn = st.button("Prediksi", type="primary")
 if predict_btn:
     input_data = [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak]]
     input_data = sc.transform(input_data)
-    prediction = model.predict(input_data)[0]
+    prediction = model.predict(input_data) 
     
     # Menampilkan progress bar
     bar = st.progress(0)
-    status_text = st.empty()
     
     for i in range(101):
-        status_text.text(f"Memproses... {i}%")
-        bar.progress(i)
-        time.sleep(0.01)
+        bar.progress(i, f'Memproses... {i}%')
+        time.sleep(0.005)
         if i == 100:
             bar.empty()
-            status_text.empty()
     
     st.divider()
     
